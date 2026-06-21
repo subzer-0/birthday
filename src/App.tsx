@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, FormEvent } from "react";
+import React, { useState, useEffect, useRef, FormEvent } from "react";
 import { 
   Mail, 
   MailOpen, 
@@ -155,6 +155,7 @@ export default function App() {
   const [musicPlaying, setMusicPlaying] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
   const synthRef = useRef<AmbientSynth | null>(null);
+  const hasUserMuted = useRef(false);
 
   // RSVP Modal States
   const [isRsvpOpen, setIsRsvpOpen] = useState(false);
@@ -236,6 +237,52 @@ export default function App() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Auto-start ambient synthesis on any first screen touch/tap/click to bypass browser limitations
+  useEffect(() => {
+    // If music is already playing or user explicitly muted, don't auto-start
+    if (musicPlaying || hasUserMuted.current) return;
+
+    const startAmbientOnInteraction = () => {
+      if (hasUserMuted.current) return;
+      if (!synthRef.current) {
+        synthRef.current = new AmbientSynth();
+      }
+      synthRef.current.start();
+      setMusicPlaying(true);
+    };
+
+    document.addEventListener("click", startAmbientOnInteraction);
+    document.addEventListener("touchstart", startAmbientOnInteraction, { passive: true });
+    document.addEventListener("keydown", startAmbientOnInteraction);
+
+    return () => {
+      document.removeEventListener("click", startAmbientOnInteraction);
+      document.removeEventListener("touchstart", startAmbientOnInteraction);
+      document.removeEventListener("keydown", startAmbientOnInteraction);
+    };
+  }, [musicPlaying]);
+
+  // Resume audio context if window gets focused or visibility states change
+  useEffect(() => {
+    const handleVisibilityOrFocus = () => {
+      if (musicPlaying && synthRef.current) {
+        // Resume if suspended
+        const ctx = (synthRef.current as any).ctx;
+        if (ctx && ctx.state === "suspended") {
+          ctx.resume().catch((e: any) => console.log("Failed to resume audio on focus:", e));
+        }
+      }
+    };
+    
+    window.addEventListener("focus", handleVisibilityOrFocus);
+    document.addEventListener("visibilitychange", handleVisibilityOrFocus);
+    
+    return () => {
+      window.removeEventListener("focus", handleVisibilityOrFocus);
+      document.removeEventListener("visibilitychange", handleVisibilityOrFocus);
+    };
+  }, [musicPlaying]);
+
   // Check if the current environment is a Host (acting with sharing/personalization toolkit)
   const isHostEnvironment = () => {
     const hostname = window.location.hostname;
@@ -278,7 +325,10 @@ export default function App() {
   };
 
   // Set up Ambient Synth controller
-  const toggleMusic = () => {
+  const toggleMusic = (e?: React.MouseEvent) => {
+    if (e && e.stopPropagation) {
+      e.stopPropagation();
+    }
     if (!synthRef.current) {
       synthRef.current = new AmbientSynth();
     }
@@ -286,9 +336,11 @@ export default function App() {
     if (musicPlaying) {
       synthRef.current.stop();
       setMusicPlaying(false);
+      hasUserMuted.current = true;
     } else {
       synthRef.current.start();
       setMusicPlaying(true);
+      hasUserMuted.current = false;
     }
   };
 
@@ -306,6 +358,14 @@ export default function App() {
     if (isEnvelopeOpened) return;
     setIsEnvelopeOpened(true);
     playChimeSound();
+    
+    // Auto-start ambient synthesis as well
+    if (!synthRef.current) {
+      synthRef.current = new AmbientSynth();
+    }
+    synthRef.current.start();
+    setMusicPlaying(true);
+    hasUserMuted.current = false;
     
     // Step 1: Fold back the top flap
     setTimeout(() => {
@@ -455,7 +515,7 @@ export default function App() {
             >
               <Sparkles className="w-4 h-4 text-[#C39A54] animate-spin" style={{ animationDuration: '6s' }} />
               <p className="text-xs font-medium tracking-wide">
-                You have received an invitation from <strong className="text-stone-900 font-semibold font-serif">Vinnie</strong>! Tap below to open.
+                You have received an invitation to <strong className="text-stone-900 font-semibold font-serif">Auntie Vinnie's surprise party </strong>! Tap below to open.
               </p>
             </motion.div>
           )}
