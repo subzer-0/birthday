@@ -140,7 +140,7 @@ interface ConfettiParticle {
 export default function App() {
   // Parsing parameters from URL
   const queryParams = new URLSearchParams(window.location.search);
-  const initialToName = queryParams.get("to") || "Dear Friends & Family";
+  const initialToName = queryParams.get("to") || "Friends & Family";
 
   // State managers
   const [toName, setToName] = useState(initialToName);
@@ -612,14 +612,14 @@ export default function App() {
                     
                     {/* Addressee Personalized Label */}
                     <div className="mb-2.5">
-                      <p className="font-cursive text-3xl text-[#C39A54] leading-none mb-0.5 font-bold">To: Dear {toName}</p>
+                      <p className="font-cursive text-3xl text-[#C39A54] leading-none mb-0.5 font-bold">To: {toName}</p>
                     </div>
 
                     <p className="font-sans text-[9px] uppercase tracking-[4px] text-stone-600 mb-1 font-semibold">You are cordially invited to</p>
                     <h1 className="font-serif text-3xl font-extrabold tracking-tight text-stone-900 leading-tight">The Birthday<br />Soirée</h1>
                     
                     <p className="font-serif italic text-xs text-[#C39A54] font-medium my-2">
-                      Celebrating Vinnie's 60th Birthday Milestone Detail
+                      Celebrating Vinnie's 60th Birthday Milestone
                     </p>
 
                     {/* Date/Location Highlights */}
@@ -730,7 +730,7 @@ export default function App() {
       <div className="hidden print:block print:w-[155mm] print:h-[215mm] print:m-0 print:p-8 print:bg-white print:border print:border-stone-400 font-sans text-center text-[#1d1b1a]">
         <div className="border border-[#C39A54] h-full p-6 flex flex-col justify-between items-center bg-white">
           <div className="py-2">
-            <p className="font-cursive text-4xl text-[#C39A54] leading-tight font-extrabold my-2">To: Dear {toName}</p>
+            <p className="font-cursive text-4xl text-[#C39A54] leading-tight font-extrabold my-2">To: {toName}</p>
           </div>
           
           <div className="my-3">
