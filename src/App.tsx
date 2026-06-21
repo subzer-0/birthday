@@ -187,7 +187,7 @@ export default function App() {
 
   // Countdown States
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-  const countdownDate = new Date("2026-06-27T15:00:00+03:00").getTime(); // East Africa Time/Standard timezone representation
+  const countdownDate = new Date("2026-06-27T14:00:00+03:00").getTime(); // East Africa Time/Standard timezone representation
 
   // Confetti particles state + reference
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -375,7 +375,7 @@ export default function App() {
   // Custom function to add event to Google Calendar
   const getGoogleCalendarUrl = () => {
     const title = encodeURIComponent("Vinnie's 60th Birthday Soirée");
-    const dates = encodeURIComponent("20260627T120000Z/20260627T210000Z"); // Zulu/Universal converter representation
+    const dates = encodeURIComponent("20260627T110000Z/20260627T210000Z"); // Zulu/Universal converter representation
     const details = encodeURIComponent("You are invited to join us as Vinnie celebrates her 60th Birthday Milestone in Kiwatule!\n\nWebsite RSVP and digital invite portal: " + window.location.href);
     const location = encodeURIComponent("Kiwatule, Kampala, Uganda");
     return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
@@ -495,7 +495,7 @@ export default function App() {
         )}
 
         {/* 3D Envelope & Presentation Scene */}
-        <div className="relative w-full h-[600px] flex items-center justify-center">
+        <div className="relative w-full h-[525px] min-[375px]:h-[580px] sm:h-[620px] flex items-center justify-center">
           
           {/* Card Presentation Stage */}
           <AnimatePresence>
@@ -505,7 +505,7 @@ export default function App() {
                 whileHover={{ scale: 1.02, rotate: -0.5 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={handleOpenEnvelope}
-                className="absolute w-[360px] sm:w-[420px] h-[280px] sm:h-[320px] bg-gradient-to-br from-[#ECE7E1] to-[#DDD7D0] rounded-lg shadow-2xl border border-stone-200 cursor-pointer flex flex-col justify-between p-6 overflow-hidden z-20 group"
+                className="absolute w-[300px] min-[375px]:w-[350px] sm:w-[420px] h-[230px] min-[375px]:h-[260px] sm:h-[320px] bg-gradient-to-br from-[#ECE7E1] to-[#DDD7D0] rounded-lg shadow-2xl border border-stone-200 cursor-pointer flex flex-col justify-between p-4 min-[375px]:p-6 overflow-hidden z-20 group"
               >
                 {/* Simulated Envelope Back Flaps & Texture */}
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,transparent_50%,rgba(0,0,0,0.05)_100%)] pointer-events-none" />
@@ -513,37 +513,37 @@ export default function App() {
                 <div className="absolute right-0 bottom-0 top-1/2 left-1/2 bg-[#DDD7D0]/60 scale-y-110 skew-y-[-32deg] origin-bottom-right border-t border-stone-300/40" />
                 
                 {/* Bottom flap edge */}
-                <div className="absolute inset-x-0 bottom-0 h-10 bg-[#CCC5BE]/30 border-t border-stone-400/20" />
+                <div className="absolute inset-x-0 bottom-0 h-10 bg-[#CCC5BE]/30 border-t border-stone-400/20" />Prefix
 
                 {/* Top triangular sealed flap representation */}
-                <div className="absolute inset-x-0 top-0 border-l-[180px] sm:border-l-[210px] border-l-transparent border-r-[180px] sm:border-r-[210px] border-r-transparent border-t-[140px] sm:border-t-[160px] border-t-[#D4CEC8] group-hover:border-t-[#C5BEB7] transition-all duration-300 origin-top shadow-md z-30 flex justify-center">
+                <div className="absolute inset-x-0 top-0 border-l-[150px] min-[375px]:border-l-[175px] sm:border-l-[210px] border-l-transparent border-r-[150px] min-[375px]:border-r-[175px] sm:border-r-[210px] border-r-transparent border-t-[110px] min-[375px]:border-t-[130px] sm:border-t-[160px] border-t-[#D4CEC8] group-hover:border-t-[#C5BEB7] transition-all duration-300 origin-top shadow-md z-30 flex justify-center">
                   {/* Decorative luxury gold sticker seal */}
-                  <div className="absolute top-[-44px] flex items-center justify-center w-12 h-12 bg-gradient-to-tr from-amber-600 via-amber-400 to-amber-200 rounded-full shadow-[0px_3px_10px_rgba(180,130,40,0.4)] border border-amber-300 transform -translate-y-1/2 group-hover:scale-110 transition-transform duration-300 pointer-events-none">
-                    <Heart className="w-5 h-5 text-[#1d1b1a] fill-amber-900/10 animate-pulse" />
+                  <div className="absolute top-[-36px] min-[375px]:top-[-42px] sm:top-[-44px] flex items-center justify-center w-10 min-[375px]:w-12 h-10 min-[375px]:h-12 bg-gradient-to-tr from-amber-600 via-amber-400 to-amber-200 rounded-full shadow-[0px_3px_10px_rgba(180,130,40,0.4)] border border-amber-300 transform -translate-y-1/2 group-hover:scale-110 transition-transform duration-300 pointer-events-none">
+                    <Heart className="w-4 h-4 min-[375px]:w-5 min-[375px]:h-5 text-[#1d1b1a] fill-amber-900/10 animate-pulse" />
                   </div>
                 </div>
 
                 {/* Recipient custom tag label */}
-                <div className="mt-28 self-center bg-[#FAF8F5]/90 border border-[#C39A54]/30 px-6 py-2.5 rounded-md text-stone-800 text-center shadow-lg w-[85%] z-10 transition-colors group-hover:border-[#C39A54]/60">
+                <div className="mt-20 min-[375px]:mt-24 sm:mt-28 self-center bg-[#FAF8F5]/90 border border-[#C39A54]/30 px-6 py-2.5 rounded-md text-stone-800 text-center shadow-lg w-[85%] z-10 transition-colors group-hover:border-[#C39A54]/60">
                   <p className="text-[10px] uppercase font-semibold letter tracking-[2px] text-stone-500 mb-0.5">Invitation For</p>
-                  <p className="font-cursive text-2xl text-[#C39A54] leading-tight font-bold">{toName}</p>
+                  <p className="font-cursive text-xl min-[375px]:text-2xl text-[#C39A54] leading-tight font-bold">{toName}</p>
                 </div>
 
                 {/* Bottom luxury instructions message of envelope */}
-                <div className="text-[9px] text-[#A69E96] font-medium tracking-[2.5px] uppercase text-center mb-1 z-10 group-hover:text-stone-600 transition-colors">
+                <div className="text-[8px] min-[375px]:text-[9px] text-[#A69E96] font-medium tracking-[2.5px] uppercase text-center mb-0.5 min-[375px]:mb-1 z-10 group-hover:text-stone-600 transition-colors">
                   Tap to unseal
                 </div>
               </motion.div>
             ) : (
               // OPENED ENVELOPE BACKGROUND + ACTIVE CARD SCENE
-              <div className="absolute w-full h-full flex flex-col items-center justify-center pt-10">
+              <div className="absolute w-full h-full flex flex-col items-center justify-center pt-8 sm:pt-10">
                 {/* Back flap flipped up */}
-                <div className="absolute bottom-[240px] w-[360px] sm:w-[420px] h-[140px] bg-[#CBBFB6] rounded-t-lg z-0 origin-bottom transform rotate-180 shadow-inner overflow-hidden border-b border-stone-300/40">
+                <div className="absolute bottom-[200px] min-[375px]:bottom-[225px] sm:bottom-[240px] w-[300px] min-[375px]:w-[350px] sm:w-[420px] h-[110px] min-[375px]:h-[130px] sm:h-[140px] bg-[#CBBFB6] rounded-t-lg z-0 origin-bottom transform rotate-180 shadow-inner overflow-hidden border-b border-stone-300/40">
                   <div className="absolute inset-0 bg-gradient-to-t from-stone-400/20 to-transparent" />
                 </div>
                 
                 {/* Lower Envelope Body pocket (background pocket) */}
-                <div className="absolute bottom-5 w-[360px] sm:w-[420px] h-[220px] bg-gradient-to-b from-[#CCC5BE] to-[#DDD7D0] rounded-b-lg shadow-xl z-20 pointer-events-none overflow-hidden">
+                <div className="absolute bottom-5 w-[300px] min-[375px]:w-[350px] sm:w-[420px] h-[170px] min-[375px]:h-[195px] sm:h-[220px] bg-gradient-to-b from-[#CCC5BE] to-[#DDD7D0] rounded-b-lg shadow-xl z-20 pointer-events-none overflow-hidden">
                   <div className="absolute left-0 bottom-0 top-0 right-1/2 bg-[#DDD7D0]/80 scale-y-110 skew-y-[32deg] origin-bottom-left border-t border-stone-300/40" />
                   <div className="absolute right-0 bottom-0 top-0 left-1/2 bg-[#DDD7D0]/80 scale-y-110 skew-y-[-32deg] origin-bottom-right border-t border-stone-300/40" />
                   
@@ -556,10 +556,9 @@ export default function App() {
                 {/* SLIDEOUT INVITATION CARD */}
                 <motion.div 
                   initial={{ translateY: 150, scale: 0.9, zIndex: 10 }}
-                  animate={isCardSlidUp ? { translateY: -40, scale: 1, zIndex: 30 } : { translateY: 120, scale: 0.94 }}
+                  animate={isCardSlidUp ? { translateY: -35, scale: 1, zIndex: 30 } : { translateY: 110, scale: 0.94 }}
                   transition={{ type: "spring", stiffness: 60, damping: 15 }}
-                  className="w-[340px] sm:w-[390px] bg-white bg-gradient-to-b from-[#FFF] to-[#FDFBF7] shadow-2xl rounded-sm p-6 sm:p-7 text-center border border-stone-200/60 flex flex-col justify-between select-text animate-card-wiggle relative"
-                  style={{ height: "550px" }}
+                  className="w-[285px] min-[375px]:w-[335px] sm:w-[390px] h-[480px] min-[375px]:h-[530px] sm:h-[550px] bg-white bg-gradient-to-b from-[#FFF] to-[#FDFBF7] shadow-2xl rounded-sm p-4 min-[375px]:p-6 sm:p-7 text-center border border-stone-200/60 flex flex-col justify-between select-text animate-card-wiggle relative"
                 >
                   {/* Outer border visual strip */}
                   <div className="absolute inset-3 border border-[#C39A54]/20 pointer-events-none rounded-sm" />
@@ -568,7 +567,7 @@ export default function App() {
                   {/* Top celebration illustration banner */}
                   <div className="w-full relative py-0.5 z-10 flex flex-col items-center">
                     {/* Artistic birthday illustration in vector */}
-                    <svg viewBox="0 0 400 110" className="w-full h-auto mt-2 max-h-[82px]" aria-hidden="true">
+                    <svg viewBox="0 0 400 110" className="w-full h-auto mt-1 min-[375px]:mt-2 max-h-[64px] min-[375px]:max-h-[82px]" aria-hidden="true">
                       {/* Floating shiny balloons */}
                       <g fill="none">
                         <ellipse cx="140" cy="38" rx="14" ry="19" fill="#C39A54" opacity="0.8" />
@@ -608,79 +607,79 @@ export default function App() {
                   </div>
 
                   {/* Core Content Body of Invitation */}
-                  <div className="flex-1 flex flex-col items-center justify-start mt-2">
+                  <div className="flex-1 flex flex-col items-center justify-start mt-1 min-[375px]:mt-2">
                     
                     {/* Addressee Personalized Label */}
-                    <div className="mb-2.5">
-                      <p className="font-cursive text-3xl text-[#C39A54] leading-none mb-0.5 font-bold">To: {toName}</p>
+                    <div className="mb-1.5 min-[375px]:mb-2.5">
+                      <p className="font-cursive text-2xl min-[375px]:text-3xl text-[#C39A54] leading-none mb-0.5 font-bold">To: {toName}</p>
                     </div>
 
-                    <p className="font-sans text-[9px] uppercase tracking-[4px] text-stone-600 mb-1 font-semibold">You are cordially invited to</p>
-                    <h1 className="font-serif text-3xl font-extrabold tracking-tight text-stone-900 leading-tight">The Birthday<br />Soirée</h1>
+                    <p className="font-sans text-[8px] min-[375px]:text-[9px] uppercase tracking-[2px] min-[375px]:tracking-[4px] text-stone-600 mb-0.5 min-[375px]:mb-1 font-semibold">You are cordially invited to</p>
+                    <h1 className="font-serif text-2xl min-[375px]:text-3xl font-extrabold tracking-tight text-stone-900 leading-tight">The Birthday<br />Soirée</h1>
                     
-                    <p className="font-serif italic text-xs text-[#C39A54] font-medium my-2">
+                    <p className="font-serif italic text-[10px] min-[375px]:text-xs text-[#C39A54] font-medium my-1 min-[375px]:my-2">
                       Celebrating Vinnie's 60th Birthday Milestone
                     </p>
 
                     {/* Date/Location Highlights */}
-                    <div className="w-full border-y border-stone-200/70 py-3.5 my-3 flex flex-col gap-2.5">
-                      <div className="flex items-center justify-center gap-3 text-stone-800">
-                        <Calendar className="w-4 h-4 text-[#C39A54] shrink-0" />
-                        <span className="text-xs font-semibold tracking-wide uppercase text-stone-900">Saturday, June 27th • 3:00 PM</span>
+                    <div className="w-full border-y border-stone-200/70 py-2 min-[375px]:py-3.5 my-1.5 min-[375px]:my-3 flex flex-col gap-1.5 min-[375px]:gap-2.5">
+                      <div className="flex items-center justify-center gap-2.5 text-stone-800">
+                        <Calendar className="w-3.5 h-3.5 min-[375px]:w-4 min-[375px]:h-4 text-[#C39A54] shrink-0" />
+                        <span className="text-[11px] min-[375px]:text-xs font-semibold tracking-wide uppercase text-stone-900">Saturday, June 27th • 2:00 PM</span>
                       </div>
-                      <div className="flex items-center justify-center gap-3 text-stone-800">
-                        <MapPin className="w-4 h-4 text-[#427F82] shrink-0" />
-                        <span className="text-xs font-semibold tracking-wide uppercase text-stone-900">Kiwatule</span>
+                      <div className="flex items-center justify-center gap-2.5 text-stone-800">
+                        <MapPin className="w-3.5 h-3.5 min-[375px]:w-4 min-[375px]:h-4 text-[#427F82] shrink-0" />
+                        <span className="text-[11px] min-[375px]:text-xs font-semibold tracking-wide uppercase text-stone-900">Kiwatule</span>
                       </div>
-                      <p className="text-[10px] text-stone-500 font-medium tracking-wider uppercase mb-0">
+                      <p className="text-[9px] min-[375px]:text-[10px] text-stone-500 font-medium tracking-wider uppercase mb-0">
                         Kindly respond by <strong className="text-stone-900 font-semibold">June 24th</strong> to secure reservation
                       </p>
                     </div>
 
                     {/* Styled Countdown Section */}
-                    <div className="w-full bg-[#FCFAF6] border border-stone-200/50 rounded p-2 text-center mb-1">
-                      <p className="text-[9px] uppercase tracking-widest text-[#C39A54] font-semibold mb-1.5 flex items-center justify-center gap-1">
-                        <Clock className="w-3 h-3 text-[#C39A54]" />
+                    <div className="w-full bg-[#FCFAF6] border border-stone-200/50 rounded p-1.5 min-[375px]:p-2 text-center mb-1">
+                      <p className="text-[8px] min-[375px]:text-[9px] uppercase tracking-wider min-[375px]:tracking-widest text-[#C39A54] font-semibold mb-1 min-[375px]:mb-1.5 flex items-center justify-center gap-1">
+                        <Clock className="w-2.5 h-2.5 min-[375px]:w-3 min-[375px]:h-3 text-[#C39A54]" />
                         Time Remaining until celebration
                       </p>
                       
-                      <div className="grid grid-cols-4 gap-1.5">
+                      <div className="grid grid-cols-4 gap-1 min-[375px]:gap-1.5">
                         <div className="flex flex-col items-center">
-                          <span className="text-sm font-bold text-stone-900 font-serif tabular-nums leading-none">{timeLeft.days}</span>
-                          <span className="text-[8px] uppercase text-stone-500 font-medium mt-0.5">Days</span>
+                          <span className="text-xs min-[375px]:text-sm font-bold text-stone-900 font-serif tabular-nums leading-none">{timeLeft.days}</span>
+                          <span className="text-[7px] min-[375px]:text-[8px] uppercase text-stone-500 font-medium mt-0.5">Days</span>
                         </div>
                         <div className="flex flex-col items-center">
-                          <span className="text-sm font-bold text-stone-900 font-serif tabular-nums leading-none">{timeLeft.hours}</span>
-                          <span className="text-[8px] uppercase text-stone-500 font-medium mt-0.5">Hrs</span>
+                          <span className="text-xs min-[375px]:text-sm font-bold text-stone-900 font-serif tabular-nums leading-none">{timeLeft.hours}</span>
+                          <span className="text-[7px] min-[375px]:text-[8px] uppercase text-stone-500 font-medium mt-0.5">Hrs</span>
                         </div>
                         <div className="flex flex-col items-center">
-                          <span className="text-sm font-bold text-stone-900 font-serif tabular-nums leading-none">{timeLeft.minutes}</span>
-                          <span className="text-[8px] uppercase text-stone-500 font-medium mt-0.5">Mins</span>
+                          <span className="text-xs min-[375px]:text-sm font-bold text-stone-900 font-serif tabular-nums leading-none">{timeLeft.minutes}</span>
+                          <span className="text-[7px] min-[375px]:text-[8px] uppercase text-stone-500 font-medium mt-0.5">Mins</span>
                         </div>
                         <div className="flex flex-col items-center">
-                          <span className="text-sm font-bold text-stone-900 font-serif tabular-nums leading-none">{timeLeft.seconds}</span>
-                          <span className="text-[8px] uppercase text-stone-500 font-medium mt-0.5">Secs</span>
+                          <span className="text-xs min-[375px]:text-sm font-bold text-stone-900 font-serif tabular-nums leading-none">{timeLeft.seconds}</span>
+                          <span className="text-[7px] min-[375px]:text-[8px] uppercase text-stone-500 font-medium mt-0.5">Secs</span>
                         </div>
                       </div>
                     </div>
                   </div>
 
                   {/* Bottom Footer Actions inside the invitation card */}
-                  <div className="mt-auto pt-2 flex flex-col items-center gap-3.5">
+                  <div className="mt-auto pt-1 flex flex-col items-center gap-2 min-[375px]:gap-3.5">
                     
                     {/* Primary Engagement CTA RSVP */}
                     <a 
                       href={getGoogleFormUrl()}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full select-none text-center block bg-neutral-900 hover:bg-[#d1ab69] hover:text-white text-stone-50 px-6 py-3.5 text-xs font-semibold tracking-[2px] uppercase transition-all duration-300 shadow-[0_6px_15px_rgba(29,27,26,0.15)] hover:shadow-[0_8px_20px_rgba(195,154,84,0.22)] active:scale-[0.98] cursor-pointer"
+                      className="w-full select-none text-center block bg-neutral-900 hover:bg-[#d1ab69] hover:text-white text-stone-50 px-4 min-[375px]:px-6 py-2.5 min-[375px]:py-3.5 text-xs font-semibold tracking-[1.5px] min-[375px]:tracking-[2px] uppercase transition-all duration-300 rounded shadow-[0_6px_15px_rgba(29,27,26,0.15)] hover:shadow-[0_8px_20px_rgba(195,154,84,0.22)] active:scale-[0.98] cursor-pointer"
                       id="open-rsvp-form"
                     >
                       {formName ? `RSVP as ${formName}` : "Confirm RSVP"}
                     </a>
 
                     {/* Secondary Actions Row */}
-                    <div className="flex items-center gap-4 text-xs font-semibold uppercase tracking-wider text-stone-700">
+                    <div className="flex items-center gap-2 min-[375px]:gap-4 text-[10px] min-[375px]:text-xs font-semibold uppercase tracking-wider text-stone-700">
                       <a 
                         href={getGoogleCalendarUrl()}
                         target="_blank" 
@@ -706,7 +705,7 @@ export default function App() {
                       </a>
                     </div>
 
-                    <p className="text-[9px] text-stone-400 font-medium italic mt-1">
+                    <p className="text-[8px] min-[375px]:text-[9px] text-stone-400 font-medium italic mt-0.5">
                       Your presence is the greatest gift we could hope to receive.
                     </p>
                   </div>
@@ -742,7 +741,7 @@ export default function App() {
           </div>
 
           <div className="w-full border-y border-stone-300 py-4 my-4">
-            <p className="text-sm font-bold uppercase text-stone-900 my-1">Saturday, June 27th • 3:00 PM</p>
+            <p className="text-sm font-bold uppercase text-stone-900 my-1">Saturday, June 27th • 2:00 PM</p>
             <p className="text-sm font-bold uppercase text-stone-900 my-1">Kiwatule</p>
             <p className="text-xs text-stone-600 italic mt-3">
               RSVP by June 24th
