@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Montserrat", sans-serif;
+  --font-cursive: "Great Vibes", cursive;
+  
+  --animate-float-slow-1: float-slow-1 14s infinite ease-in-out;
+  --animate-float-slow-2: float-slow-2 18s infinite ease-in-out;
+  --animate-float-slow-3: float-slow-3 16s infinite ease-in-out;
+  --animate-shimmer-ambient: shimmer-ambient 12s infinite alternate ease-in-out;
+  --animate-card-wiggle: card-wiggle 4s infinite ease-in-out;
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes float-slow-1 {
+  0% { transform: translateY(110vh) translateX(0px) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.8; }
+  50% { transform: translateY(50vh) translateX(25px) rotate(8deg); opacity: 1; }
+  90% { opacity: 0.8; }
+  100% { transform: translateY(-20vh) translateX(-10px) rotate(-4deg); opacity: 0; }
+}
+
+@keyframes float-slow-2 {
+  0% { transform: translateY(110vh) translateX(0px) rotate(0deg); opacity: 0; }
+  15% { opacity: 0.7; }
+  60% { transform: translateY(40vh) translateX(-35px) rotate(-12deg); opacity: 0.9; }
+  85% { opacity: 0.7; }
+  100% { transform: translateY(-20vh) translateX(15px) rotate(6deg); opacity: 0; }
+}
+
+@keyframes float-slow-3 {
+  0% { transform: translateY(110vh) translateX(0px) rotate(0deg); opacity: 0; }
+  8% { opacity: 0.6; }
+  45% { transform: translateY(55vh) translateX(15px) rotate(-5deg); opacity: 0.86; }
+  92% { opacity: 0.6; }
+  100% { transform: translateY(-20vh) translateX(-20px) rotate(11deg); opacity: 0; }
+}
+
+@keyframes shimmer-ambient {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(1.5%, -1%) scale(1.02); }
+}
+
+@keyframes card-wiggle {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  33% { transform: rotate(0.4deg) translateY(-2px); }
+  66% { transform: rotate(-0.4deg) translateY(1px); }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(195, 154, 84, 0.15);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(195, 154, 84, 0.3);
+}
+
+html, body {
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+  background-color: #FAF7F2;
+}
+
+/* Print utilities */
+@media print {
+  body {
+    background: white !important;
+  }
+}

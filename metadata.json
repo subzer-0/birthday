@@ -1,0 +1,6 @@
+{
+  "name": "Vinnie's 60th Birthday Invitation",
+  "description": "An elegant interactive digital invitation for Vinnie's 60th Birthday Soirée with interactive RSVP linking to Google Forms.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
